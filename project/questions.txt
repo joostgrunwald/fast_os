@@ -4,13 +4,14 @@ benchmark:
 REPEAT = 2ULL
 SIZE = 16384ULL
 
-user time:                    28.036351 s
-system time:                    0.584507 s
+(average of 5 runs)
+user time:                    28.31 s
+system time:                  0.63 s
 soft page faults:             524395
 hard page faults:             0
 max memory:                   2099752 KiB
 voluntary context switches:   0
-involuntary context switches: 489
+involuntary context switches: 714,2
 dummy value (ignore):         549755813888
 
 VirtualBox:
@@ -51,26 +52,40 @@ change 1:
 			}
 		}
 	because it is a redundant loop using cpu time.
+	
 	changed code:
 		res[j * SIZE + i] /= 9;
 		dummy += res[j * SIZE + i];
 	added the second line below the first line to keep the function the same. Also now we acces memory at same location without having to jump around in memory.
 	
 	result:
-		user time:                    21.956340 s
-		system time:                  0.707361 s
+		(average of 5 runs)
+		user time:                    22.72 s
+		system time:                  0.6 s
 		soft page faults:             524394
 		hard page faults:             0
 		max memory:                   2099756 KiB
 		voluntary context switches:   0
-		involuntary context switches: 300
+		involuntary context switches: 429.6
 		dummy value (ignore):         549755813888
 
 change 2:
-		
-		
-		
-		
+	changed: 
+		in every loop we removed int64_t and changed it to int to save memory space
+		we also changed every long to a short for the same reason.
+	
+	result:
+		(average of 5 runs)
+		user time:                    22.48 s 
+		system time:                  0.614 s
+		soft page faults:             524394
+		hard page faults:             0
+		max memory:                   2099776 KiB
+		voluntary context switches:   0
+		involuntary context switches: 531,2
+		dummy value (ignore):         549755813888
+
+change 3:
 		
 		
 		
