@@ -1,0 +1,70 @@
+
+BENCHMARK
+user time:                    28.036351 s
+system time:                    0.584507 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 489
+dummy value (ignore):         549755813888
+
+AFTER REMOVING LOOP
+
+user time:                    21.956340 s
+system time:                  0.707361 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099756 KiB
+voluntary context switches:   0
+
+AFTER CHANGING TYPES TO int and long 
+Average user time = 22,482
+Average system time = 0.614 
+Average involuntary context switches = 531,2
+
+user time:                    21.850936 s
+system time:                  0.614106 s
+soft page faults:             524396
+hard page faults:             0
+max memory:                   2099880 KiB
+voluntary context switches:   0
+involuntary context switches: 410
+dummy value (ignore):         549755813888
+
+user time:                    21.864535 s
+system time:                  0.583800 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 233
+dummy value (ignore):         549755813888
+martijn@martijn-VirtualBox:~/assignment3-mas
+
+user time:                    23.449519 s
+system time:                  0.613504 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099676 KiB
+voluntary context switches:   0
+involuntary context switches: 345
+dummy value (ignore):         549755813888
+
+user time:                    23.056994 s
+system time:                  0.710743 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099780 KiB
+voluntary context switches:   0
+involuntary context switches: 758
+dummy value (ignore):         549755813888
+
+user time:                    22.193899 s
+system time:                  0.560856 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099776 KiB
+voluntary context switches:   0
+involuntary context switches: 910
+dummy value (ignore):         549755813888
