@@ -44,6 +44,10 @@ In conclusion, when analyzing algorithms and performance we should not ignore th
 step 3:
 
 step 4:
+NOTE: we took the average of 5 runs every time due to variations in time.
+we think this will display improvements more accurately
+
+
 change 1:
 	removed:
 		for (int64_t i = 1; i < SIZE - 1; i++) {
@@ -94,19 +98,35 @@ change 3:
 		this keeps the computation the same, however now we acces addresses which are close together in the innermost forloop
 		this will optimize caching and thus reduce the user time.
 	
-	result: (averaged over 5 runs)
-    user time:                    6.41 s
-    system time:                  0.58 s
-    soft page faults:             524393
-    hard page faults:             0
-    max memory:                   2099752 KiB
-    voluntary context switches:   0
-    involuntary context switches: 299.8
-    dummy value (ignore):         549755813888
+	result: 
+		(averaged over 5 runs)
+		user time:                    6.41 s
+		system time:                  0.58 s
+		soft page faults:             524393
+		hard page faults:             0
+		max memory:                   2099752 KiB
+		voluntary context switches:   0
+		involuntary context switches: 299.8
+		dummy value (ignore):         549755813888
 
-    Note that the user time is much faster, but also the system is faster and we need less involuntary context switches
+		Note that the user time is much faster, but also the system is faster and we need less involuntary context switches
+change 4:
+	change: 
+		changed img[(i + l) * SIZE + j + k] to img[(i + k) * SIZE + j + l]
+		so we again optimize caching and reduce user time
+		basically the exact same thing as in change 3
 
+	result:
+		(average of 5 runs)
+        
+        user time:                    6.23 s
+        system time:                  0.57 s
+        soft page faults:             524394
+        hard page faults:             0
+        max memory:                   2099772 KiB
+        voluntary context switches:   0
+        involuntary context switches: 149.4
+        dummy value (ignore):         549755813888
 		
-		
-		
+        Note that the involuntary context switches decreased a lot! While user and sytem time decreased a bit.
 		
