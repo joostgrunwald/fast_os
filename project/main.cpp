@@ -56,9 +56,6 @@ int main(int argc, char* argv[]) {
 						//res[j * SIZE + i] += img[(j + l) * SIZE + i + k]; //bad caching swap i j
 						
 					}
-					//x += img[(i + k) * SIZE + j -1];
-					//x += img[(i + k) * SIZE + j];
-					//x += img[(i + k) * SIZE + j + 1];
 					
 					
 				}
