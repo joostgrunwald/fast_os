@@ -151,4 +151,16 @@ change 6:
     change: 
         changed usage of memory to using a float x, which is quite a bit faster.
         This because not have to use res which is less fast. 
+		Now we also do not have to access memory in the res list meaning we will reduce page faults and overall running time.
+
+	result:
+		(average of 5 runs)
+		user time:                    5.52 s
+		system time:                  0.31 s
+		soft page faults:             262281
+		hard page faults:             0
+		max memory:                   1051556 KiB
+		voluntary context switches:   0
+		involuntary context switches: 258.8
+		dummy value (ignore):         549755813888
     
