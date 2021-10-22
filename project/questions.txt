@@ -1,14 +1,79 @@
+Step 1:
 
-EXERCISE 3.2
-Kamp found that there was a fundamental misunderstanding of performance of certain algorithms. 
-This is mainly caused due to not understanding/using virtual memory to its fullest potential. And using it as it were all real memory.
-Because of the realization of this fact Kamp decided to redesign the binary-heap to a what he calls B-heap. 
-He later shows in some graphs that his B-heap indeed outperforms or performs similar to binary-heap. 
-He shows that the B-heap performs better because it causes less frequent page faults which in turn increases performance.
-The difference is mostly in the way the B-heap finds the parent or childs of its nodes. 
-The traditional way has a lot of pages stacked on top of each other in VM while B-heap tries to let most operations happen in one VM page and thus reduce the VM footprint
-and also the VM page faults.
+benchmark:
+REPEAT = 2ULL
+SIZE = 16384ULL
+
+user time:                    28.036351 s
+system time:                    0.584507 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 489
+dummy value (ignore):         549755813888
+
+VirtualBox:
+memory: 8 GiB
+cpu: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+4 cpus with 4 cores per socket and 1 socket.
+L1d cache: 128 KiB
+L1i cache: 128 KiB
+L2 cache : 1 MiB
+L3 cahce : 48 MiB
+OS: Linux (Ubuntu)
+
+laptop:
+physical memory: 32 GiB
+cpu: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+6 cores 12 processors
+L1 cache: 384 KiB
+L2 cache: 1.5 MiB
+L3 cache: 12 MiB
+OS: Windows 10
+
+Step 2:
+
+Kamp found that there was a fundamental misunderstanding of performance of certain algorithms. This is mainly caused due to not understanding/using virtual memory to its fullest potential. And using it as it were all real memory.
+Because of the realization of this fact Kamp decided to redesign the binary-heap to a what he calls B-heap. He later shows in some graphs that his B-heap indeed outperforms or performs similar to binary-heap. He shows that the B-heap performs better because it causes less frequent page faults which in turn increases performance.
+The difference is mostly in the way the B-heap finds the parent or childs of its nodes. The traditional way has a lot of pages stacked on top of each other in VM while B-heap tries to let most operations happen in one VM page and thus reduce the VM footprint and also the VM page faults.
 He then notes that in some scenarios a O(n^2) might perform better than a O(log2(n)) algorithm because the prior causes less page faults. 
 In conclusion, when analyzing algorithms and performance we should not ignore the way that program uses memory and what effect the memory has on the overall speed of the process.
 
-EXERCISE 3.3
+step 3:
+
+step 4:
+change 1:
+	removed:
+		for (int64_t i = 1; i < SIZE - 1; i++) {
+			for (int64_t j = 1; j < SIZE - 1; j++) {
+				dummy += res[j * SIZE + i];
+			}
+		}
+	because it is a redundant loop using cpu time.
+	changed code:
+		res[j * SIZE + i] /= 9;
+		dummy += res[j * SIZE + i];
+	added the second line below the first line to keep the function the same. Also now we acces memory at same location without having to jump around in memory.
+	
+	result:
+		user time:                    21.956340 s
+		system time:                  0.707361 s
+		soft page faults:             524394
+		hard page faults:             0
+		max memory:                   2099756 KiB
+		voluntary context switches:   0
+		involuntary context switches: 300
+		dummy value (ignore):         549755813888
+
+change 2:
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
