@@ -86,8 +86,26 @@ change 2:
 		dummy value (ignore):         549755813888
 
 change 3:
+	changed:
+		in the for-loops we swapped the j and i for the indexing so what was 
+		res[j * SIZE + i] became res[i * SIZE + j] 
+		img[(j + l) * SIZE + i + k] became img[(i + l) * SIZE + j + k]
 		
-		
+		this keeps the computation the same, however now we acces addresses which are close together in the innermost forloop
+		this will optimize caching and thus reduce the user time.
+	
+	result: (averaged over 5 runs)
+    user time:                    6.41 s
+    system time:                  0.58 s
+    soft page faults:             524393
+    hard page faults:             0
+    max memory:                   2099752 KiB
+    voluntary context switches:   0
+    involuntary context switches: 299.8
+    dummy value (ignore):         549755813888
+
+    Note that the user time is much faster, but also the system is faster and we need less involuntary context switches
+
 		
 		
 		
