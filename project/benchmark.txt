@@ -1,12 +1,52 @@
 
 BENCHMARK
+user time 5x = 28.04 + 27.17 + 28.39 + 29.09 + 28.88 / 5 = 28.31
+system time 5x = 0.58 + 0.55 + 0.71 + 0.63 + 0.68 / 5 = 0.63
+ics 5x = 489 + 248 + 1287 + 1138 + 544 / 5 = 714,2
+
 user time:                    28.036351 s
-system time:                    0.584507 s
+system time:                  0.584507 s
 soft page faults:             524395
 hard page faults:             0
 max memory:                   2099752 KiB
 voluntary context switches:   0
 involuntary context switches: 489
+dummy value (ignore):         549755813888
+
+user time:                    27.169711 s
+system time:                  0.552522 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099728 KiB
+voluntary context switches:   0
+involuntary context switches: 248
+dummy value (ignore):         549755813888
+
+user time:                    28.393777 s
+system time:                  0.713451 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099776 KiB
+voluntary context switches:   0
+involuntary context switches: 1287
+dummy value (ignore):         549755813888
+
+user time:                    29.093147 s
+system time:                  0.634204 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099784 KiB
+voluntary context switches:   0
+involuntary context switches: 1138
+dummy value (ignore):         549755813888
+
+user time:                    28.880254 s
+system time:                  0.684290 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 544
 dummy value (ignore):         549755813888
 
 AFTER REMOVING LOOP
