@@ -33,29 +33,38 @@ int main(int argc, char* argv[]) {
 
 	// this dummy value is needed to avoid compilers eliminating the loop as part of a optimisation
 	uint64_t dummy = 0;
-
 	// ADJUST BELOW, BUT keep writing to the dummy variable
 	
+	float x = 0;
 	// Apply an averaging imaging filter to some input image, and write in to an output image.
 	// A pixel in the output image is calculated by averaging 9 pixels: the pixel at the same
 	// coordinates in the input image, and the adjecent pixels.
-	for (/*int64_t*/ int r = 0; r < REPEAT; ++r) { //int64 size unnecessary
+	for (/*int64_t*/ int r = 0; r < REPEAT; r++){ //int64 size unnecessary
 		for (/*int64_t*/int i = 1; i < SIZE - 1; i++) { //int64 size unnecessary
 			for (/*int64_t*/int j = 1; j < SIZE - 1; j++) { //int64 size unnecessary
-				res[i * SIZE + j] = 0;
+
+				//res[i * SIZE + j] = 0;
+				x = 0;
+
 				//res[j * SIZE + i] = 0; //bad caching swap i j
 				//for (long k = -1; k < 2; k++) { //long size unnecessary
 				for (short k = -1; k < 2; k++) {
 					//for (long l = -1; l < 2; l++) { //long size unnecessary
 					for (short l = -1; l < 2; l++) {
-						res[i * SIZE + j] += img[(i + k) * SIZE + j + l];
+						x += img[(i + k) * SIZE + j + l];
+						//res[i * SIZE + j] += img[(i + k) * SIZE + j + l];
 						//res[j * SIZE + i] += img[(j + l) * SIZE + i + k]; //bad caching swap i j
 						
 					}
+					//x += img[(i + k) * SIZE + j -1];
+					//x += img[(i + k) * SIZE + j];
+					//x += img[(i + k) * SIZE + j + 1];
+					
+					
 				}
-				res[i * SIZE + j] /= 9;
+				x = x / 9;
 				//res[j * SIZE + i] /= 9; //bad caching swap i j
-				dummy += res[i * SIZE + j];
+				dummy += (x);
 				//dummy += res[j * SIZE + i]; //bad caching swap i j
 			}
 		}
@@ -67,7 +76,6 @@ int main(int argc, char* argv[]) {
 		}*/
 		//redundant extra loop
 	}
-	
 	
 	// ADJUST ABOVE, BUT keep writing to the dummy variable
 
