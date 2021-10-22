@@ -108,3 +108,54 @@ max memory:                   2099776 KiB
 voluntary context switches:   0
 involuntary context switches: 910
 dummy value (ignore):         549755813888
+
+
+AFTER MAKING MEMORY CLOSER 
+user time 5x = 6.64 + 6.34 + 6.31 + 6.23 + 6.53 / 5 = 6.41
+system time 5x = 0.58 + 0.57 + 0.55 + 0.65 + 0.56 /5 = 0.58
+ics =  304 + 114 + 161 + 581 + 339 = 299.8
+
+user time:                    6.639611 s
+system time:                  0.583614 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 304
+dummy value (ignore):         549755813888
+
+user time:                    6.338666 s
+system time:                  0.567880 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099876 KiB
+voluntary context switches:   0
+involuntary context switches: 114
+dummy value (ignore):         549755813888
+
+user time:                    6.309358 s
+system time:                  0.555415 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099780 KiB
+voluntary context switches:   0
+involuntary context switches: 161
+dummy value (ignore):         549755813888
+
+user time:                    6.227633 s
+system time:                  0.647130 s
+soft page faults:             524392
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 581
+dummy value (ignore):         549755813888
+
+user time:                    6.525658 s
+system time:                  0.556141 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099772 KiB
+voluntary context switches:   0
+involuntary context switches: 339
+dummy value (ignore):         549755813888
