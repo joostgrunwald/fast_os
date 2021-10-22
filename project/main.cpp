@@ -42,16 +42,21 @@ int main(int argc, char* argv[]) {
 	for (/*int64_t*/ int r = 0; r < REPEAT; ++r) { //int64 size unnecessary
 		for (/*int64_t*/int i = 1; i < SIZE - 1; i++) { //int64 size unnecessary
 			for (/*int64_t*/int j = 1; j < SIZE - 1; j++) { //int64 size unnecessary
-				res[j * SIZE + i] = 0;
+				res[i * SIZE + j] = 0;
+				//res[j * SIZE + i] = 0; //bad caching swap i j
 				//for (long k = -1; k < 2; k++) { //long size unnecessary
 				for (short k = -1; k < 2; k++) {
 					//for (long l = -1; l < 2; l++) { //long size unnecessary
 					for (short l = -1; l < 2; l++) {
-						res[j * SIZE + i] += img[(j + l) * SIZE + i + k];
+						res[i * SIZE + j] += img[(i + k) * SIZE + j + l];
+						//res[j * SIZE + i] += img[(j + l) * SIZE + i + k]; //bad caching swap i j
+						
 					}
 				}
-				res[j * SIZE + i] /= 9;
-				dummy += res[j * SIZE + i];
+				res[i * SIZE + j] /= 9;
+				//res[j * SIZE + i] /= 9; //bad caching swap i j
+				dummy += res[i * SIZE + j];
+				//dummy += res[j * SIZE + i]; //bad caching swap i j
 			}
 		}
 
