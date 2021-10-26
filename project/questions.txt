@@ -1,0 +1,166 @@
+Step 1:
+
+benchmark:
+REPEAT = 2ULL
+SIZE = 16384ULL
+
+(average of 5 runs)
+user time:                    28.31 s
+system time:                  0.63 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 714,2
+dummy value (ignore):         549755813888
+
+VirtualBox:
+memory: 8 GiB
+cpu: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+4 cpus with 4 cores per socket and 1 socket.
+L1d cache: 128 KiB
+L1i cache: 128 KiB
+L2 cache : 1 MiB
+L3 cahce : 48 MiB
+OS: Linux (Ubuntu)
+
+laptop:
+physical memory: 32 GiB
+cpu: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+6 cores 12 processors
+L1 cache: 384 KiB
+L2 cache: 1.5 MiB
+L3 cache: 12 MiB
+OS: Windows 10
+
+Step 2:
+
+Kamp found that there was a fundamental misunderstanding of performance of certain algorithms. This is mainly caused due to not understanding/using virtual memory to its fullest potential. And using it as it were all real memory.
+Because of the realization of this fact Kamp decided to redesign the binary-heap to a what he calls B-heap. He later shows in some graphs that his B-heap indeed outperforms or performs similar to binary-heap. He shows that the B-heap performs better because it causes less frequent page faults which in turn increases performance.
+The difference is mostly in the way the B-heap finds the parent or childs of its nodes. The traditional way has a lot of pages stacked on top of each other in VM while B-heap tries to let most operations happen in one VM page and thus reduce the VM footprint and also the VM page faults.
+He then notes that in some scenarios a O(n^2) might perform better than a O(log2(n)) algorithm because the prior causes less page faults. 
+In conclusion, when analyzing algorithms and performance we should not ignore the way that program uses memory and what effect the memory has on the overall speed of the process.
+
+step 3:
+
+step 4:
+NOTE: we took the average of 5 runs every time due to variations in time.
+we think this will display improvements more accurately
+
+
+change 1:
+	removed:
+		for (int64_t i = 1; i < SIZE - 1; i++) {
+			for (int64_t j = 1; j < SIZE - 1; j++) {
+				dummy += res[j * SIZE + i];
+			}
+		}
+	because it is a redundant loop using cpu time.
+	
+	changed code:
+		res[j * SIZE + i] /= 9;
+		dummy += res[j * SIZE + i];
+	added the second line below the first line to keep the function the same. Also now we acces memory at same location without having to jump around in memory.
+	
+	result:
+		(average of 5 runs)
+		user time:                    22.72 s
+		system time:                  0.6 s
+		soft page faults:             524394
+		hard page faults:             0
+		max memory:                   2099756 KiB
+		voluntary context switches:   0
+		involuntary context switches: 429.6
+		dummy value (ignore):         549755813888
+
+change 2:
+	changed: 
+		in every loop we removed int64_t and changed it to int to save memory space
+		we also changed every long to a short for the same reason.
+	
+	result:
+		(average of 5 runs)
+		user time:                    22.48 s 
+		system time:                  0.614 s
+		soft page faults:             524394
+		hard page faults:             0
+		max memory:                   2099776 KiB
+		voluntary context switches:   0
+		involuntary context switches: 531,2
+		dummy value (ignore):         549755813888
+
+change 3:
+	changed:
+		in the for-loops we swapped the j and i for the indexing so what was 
+		res[j * SIZE + i] became res[i * SIZE + j] 
+		img[(j + l) * SIZE + i + k] became img[(i + l) * SIZE + j + k]
+		
+		this keeps the computation the same, however now we acces addresses which are close together in the innermost forloop
+		this will optimize caching and thus reduce the user time.
+	
+	result: 
+		(averaged over 5 runs)
+		user time:                    6.41 s
+		system time:                  0.58 s
+		soft page faults:             524393
+		hard page faults:             0
+		max memory:                   2099752 KiB
+		voluntary context switches:   0
+		involuntary context switches: 299.8
+		dummy value (ignore):         549755813888
+
+		Note that the user time is much faster, but also the system is faster and we need less involuntary context switches
+change 4:
+	change: 
+		changed img[(i + l) * SIZE + j + k] to img[(i + k) * SIZE + j + l]
+		so we again optimize caching and reduce user time
+		basically the exact same thing as in change 3
+
+	result:
+		(average of 5 runs)
+        
+        user time:                    6.23 s
+        system time:                  0.57 s
+        soft page faults:             524394
+        hard page faults:             0
+        max memory:                   2099772 KiB
+        voluntary context switches:   0
+        involuntary context switches: 149.4
+        dummy value (ignore):         549755813888
+		
+        Note that the involuntary context switches decreased a lot! While user and sytem time decreased a bit.
+		
+change 5:
+    change:
+        changed ++r to r++ for faster memory access
+        This is faster because  ++int has to create a copy, which is slower. 
+        It has to do this because a postfix has to return a value different then the one it holds.
+
+	result:
+		(average of 5 runs)
+		user time:                    6.13 s
+		system time:                  0.55 s
+		soft page faults:             524393
+		hard page faults:             0
+		max memory:                   2099752 KiB
+		voluntary context switches:   0
+		involuntary context switches: 257.6
+		dummy value (ignore):         549755813888
+
+change 6:
+    change: 
+        changed usage of memory to using a float x, which is quite a bit faster.
+        This because not have to use res which is less fast. 
+		Now we also do not have to access memory in the res list meaning we will reduce page faults and overall running time.
+
+	result:
+		(average of 5 runs)
+		user time:                    5.52 s
+		system time:                  0.31 s
+		soft page faults:             262281
+		hard page faults:             0
+		max memory:                   1051556 KiB
+		voluntary context switches:   0
+		involuntary context switches: 258.8
+		dummy value (ignore):         549755813888
+    

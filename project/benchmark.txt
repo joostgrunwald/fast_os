@@ -1,0 +1,308 @@
+
+BENCHMARK
+user time 5x = 28.04 + 27.17 + 28.39 + 29.09 + 28.88 / 5 = 28.31
+system time 5x = 0.58 + 0.55 + 0.71 + 0.63 + 0.68 / 5 = 0.63
+ics 5x = 489 + 248 + 1287 + 1138 + 544 / 5 = 714,2
+
+user time:                    28.036351 s
+system time:                  0.584507 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 489
+dummy value (ignore):         549755813888
+
+user time:                    27.169711 s
+system time:                  0.552522 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099728 KiB
+voluntary context switches:   0
+involuntary context switches: 248
+dummy value (ignore):         549755813888
+
+user time:                    28.393777 s
+system time:                  0.713451 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099776 KiB
+voluntary context switches:   0
+involuntary context switches: 1287
+dummy value (ignore):         549755813888
+
+user time:                    29.093147 s
+system time:                  0.634204 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099784 KiB
+voluntary context switches:   0
+involuntary context switches: 1138
+dummy value (ignore):         549755813888
+
+user time:                    28.880254 s
+system time:                  0.684290 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 544
+dummy value (ignore):         549755813888
+
+AFTER REMOVING LOOP
+
+user time:                    21.956340 s
+system time:                  0.707361 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099756 KiB
+voluntary context switches:   0
+
+AFTER CHANGING TYPES TO int and long 
+Average user time = 22,482
+Average system time = 0.614 
+Average involuntary context switches = 531,2
+
+user time:                    21.850936 s
+system time:                  0.614106 s
+soft page faults:             524396
+hard page faults:             0
+max memory:                   2099880 KiB
+voluntary context switches:   0
+involuntary context switches: 410
+dummy value (ignore):         549755813888
+
+user time:                    21.864535 s
+system time:                  0.583800 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 233
+dummy value (ignore):         549755813888
+martijn@martijn-VirtualBox:~/assignment3-mas
+
+user time:                    23.449519 s
+system time:                  0.613504 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099676 KiB
+voluntary context switches:   0
+involuntary context switches: 345
+dummy value (ignore):         549755813888
+
+user time:                    23.056994 s
+system time:                  0.710743 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099780 KiB
+voluntary context switches:   0
+involuntary context switches: 758
+dummy value (ignore):         549755813888
+
+user time:                    22.193899 s
+system time:                  0.560856 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099776 KiB
+voluntary context switches:   0
+involuntary context switches: 910
+dummy value (ignore):         549755813888
+
+
+AFTER MAKING MEMORY CLOSER 
+user time 5x = 6.64 + 6.34 + 6.31 + 6.23 + 6.53 / 5 = 6.41
+system time 5x = 0.58 + 0.57 + 0.55 + 0.65 + 0.56 /5 = 0.58
+ics =  304 + 114 + 161 + 581 + 339 = 299.8
+
+user time:                    6.639611 s
+system time:                  0.583614 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 304
+dummy value (ignore):         549755813888
+
+user time:                    6.338666 s
+system time:                  0.567880 s
+soft page faults:             524395
+hard page faults:             0
+max memory:                   2099876 KiB
+voluntary context switches:   0
+involuntary context switches: 114
+dummy value (ignore):         549755813888
+
+user time:                    6.309358 s
+system time:                  0.555415 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099780 KiB
+voluntary context switches:   0
+involuntary context switches: 161
+dummy value (ignore):         549755813888
+
+user time:                    6.227633 s
+system time:                  0.647130 s
+soft page faults:             524392
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 581
+dummy value (ignore):         549755813888
+
+user time:                    6.525658 s
+system time:                  0.556141 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099772 KiB
+voluntary context switches:   0
+involuntary context switches: 339
+dummy value (ignore):         549755813888
+
+CHANGE 4 
+avg time = 6.23
+system time = 0.57
+ics = 149.4
+
+user time:                    6.377299 s
+system time:                  0.617158 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099772 KiB
+voluntary context switches:   0
+involuntary context switches: 101
+dummy value (ignore):         549755813888
+
+user time:                    6.251376 s
+system time:                  0.548296 s
+soft page faults:             524392
+hard page faults:             0
+max memory:                   2099784 KiB
+voluntary context switches:   0
+involuntary context switches: 323
+dummy value (ignore):         549755813888
+
+user time:                    6.142180 s
+system time:                  0.547837 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099728 KiB
+voluntary context switches:   0
+involuntary context switches: 119
+dummy value (ignore):         549755813888
+
+user time:                    6.113867 s
+system time:                  0.543810 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099772 KiB
+voluntary context switches:   0
+involuntary context switches: 87
+dummy value (ignore):         549755813888
+
+user time:                    6.276701 s
+system time:                  0.591837 s
+soft page faults:             524396
+hard page faults:             0
+max memory:                   2099780 KiB
+voluntary context switches:   0
+involuntary context switches: 117
+dummy value (ignore):         549755813888
+
+CHANGE 5
+
+user time:                    6.103106 s
+system time:                  0.551919 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099784 KiB
+voluntary context switches:   0
+involuntary context switches: 140
+dummy value (ignore):         549755813888
+
+user time:                    6.169303 s
+system time:                  0.547405 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099772 KiB
+voluntary context switches:   0
+involuntary context switches: 444
+dummy value (ignore):         549755813888
+
+user time:                    6.178064 s
+system time:                  0.516172 s
+soft page faults:             524396
+hard page faults:             0
+max memory:                   2099796 KiB
+voluntary context switches:   0
+involuntary context switches: 86
+dummy value (ignore):         549755813888
+
+user time:                    6.095299 s
+system time:                  0.621969 s
+soft page faults:             524394
+hard page faults:             0
+max memory:                   2099780 KiB
+voluntary context switches:   0
+involuntary context switches: 444
+dummy value (ignore):         549755813888
+
+user time:                    6.170978 s
+system time:                  0.571905 s
+soft page faults:             524393
+hard page faults:             0
+max memory:                   2099752 KiB
+voluntary context switches:   0
+involuntary context switches: 174
+dummy value (ignore):         549755813888
+
+CHANGE 6 
+user time 5x = 5.52
+system time = 0.31
+
+
+user time:                    5.588122 s
+system time:                  0.299792 s
+soft page faults:             262281
+hard page faults:             0
+max memory:                   1051556 KiB
+voluntary context switches:   0
+involuntary context switches: 193
+dummy value (ignore):         549755813888
+
+user time:                    5.454129 s
+system time:                  0.272106 s
+soft page faults:             262279
+hard page faults:             0
+max memory:                   1051420 KiB
+voluntary context switches:   0
+involuntary context switches: 134
+dummy value (ignore):         549755813888
+
+user time:                    5.506270 s
+system time:                  0.311675 s
+soft page faults:             262281
+hard page faults:             0
+max memory:                   1051496 KiB
+voluntary context switches:   0
+involuntary context switches: 205
+dummy value (ignore):         549755813888
+
+user time:                    5.465652 s
+system time:                  0.351078 s
+soft page faults:             262284
+hard page faults:             0
+max memory:                   1051536 KiB
+voluntary context switches:   0
+involuntary context switches: 311
+dummy value (ignore):         549755813888
+
+user time:                    5.596147 s
+system time:                  0.312008 s
+soft page faults:             262281
+hard page faults:             0
+max memory:                   1051452 KiB
+voluntary context switches:   0
+involuntary context switches: 451
+dummy value (ignore):         549755813888
