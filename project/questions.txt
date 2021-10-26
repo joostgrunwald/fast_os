@@ -49,20 +49,23 @@ we think this will display improvements more accurately
 
 
 change 1:
-	removed:
+	we removed:
 		for (int64_t i = 1; i < SIZE - 1; i++) {
 			for (int64_t j = 1; j < SIZE - 1; j++) {
 				dummy += res[j * SIZE + i];
 			}
 		}
 	because it is a redundant loop using cpu time.
+	If we change the code inside the main loop to:
 	
-	changed code:
 		res[j * SIZE + i] /= 9;
-		dummy += res[j * SIZE + i];
-	added the second line below the first line to keep the function the same. Also now we acces memory at same location without having to jump around in memory.
-	
-	result:
+		dummy += res[j * SIZE + i]; //this is the new line
+
+	We do exactly the same as before, however, this time we 
+	do not use an unneccesary second loop to do this, hence speeding up the application as shown by our data.
+	Another advantage is that this stops us from jumping around in memory.
+
+	new result:
 		(average of 5 runs)
 		user time:                    22.72 s
 		system time:                  0.6 s
@@ -72,6 +75,18 @@ change 1:
 		voluntary context switches:   0
 		involuntary context switches: 429.6
 		dummy value (ignore):         549755813888
+
+	old result:
+		user time:                    28.31 s
+		system time:                  0.63 s
+		soft page faults:             524395
+		hard page faults:             0
+		max memory:                   2099752 KiB
+		voluntary context switches:   0
+		involuntary context switches: 714,2
+		dummy value (ignore):         549755813888
+
+	We see an significant improvement.
 
 change 2:
 	changed: 
@@ -110,6 +125,7 @@ change 3:
 		dummy value (ignore):         549755813888
 
 		Note that the user time is much faster, but also the system is faster and we need less involuntary context switches
+
 change 4:
 	change: 
 		changed img[(i + l) * SIZE + j + k] to img[(i + k) * SIZE + j + l]
