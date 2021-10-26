@@ -55,7 +55,7 @@ change 1:
 				dummy += res[j * SIZE + i];
 			}
 		}
-		
+
 	because it is a redundant loop using cpu time.
 	If we change the code inside the main loop to:
 	
@@ -147,15 +147,20 @@ change 2:
 	There is only a small improvement in performance, but there is improvement nonetheless.
 
 change 3:
-	changed:
-		in the for-loops we swapped the j and i for the indexing so what was 
-		res[j * SIZE + i] became res[i * SIZE + j] 
-		img[(j + l) * SIZE + i + k] became img[(i + l) * SIZE + j + k]
-		
-		this keeps the computation the same, however now we acces addresses which are close together in the innermost forloop
-		this will optimize caching and thus reduce the user time.
+	in the for-loops we swapped the j and i for the indexing
+
+	old code:
+		res[j * SIZE + i]
+		img[(j + l) * SIZE + i + k]
+
+	new code:
+		res[i * SIZE + j] 
+		img[(i + l) * SIZE + j + k]
 	
-	result: 
+	We compute the same dummy value as before, however now we access addresses which are close together in the innermost forloop
+	this will optimize caching and thus reduce the user time.
+
+	new result: 
 		(averaged over 5 runs)
 		user time:                    6.41 s
 		system time:                  0.58 s
@@ -166,17 +171,47 @@ change 3:
 		involuntary context switches: 299.8
 		dummy value (ignore):         549755813888
 
-		Note that the user time is much faster, but also the system is faster and we need less involuntary context switches
+	old result:
+		(average of 5 runs)
+		user time:                    22.48 s 
+		system time:                  0.614 s
+		soft page faults:             524394
+		hard page faults:             0
+		max memory:                   2099776 KiB
+		voluntary context switches:   0
+		involuntary context switches: 531,2
+		dummy value (ignore):         549755813888
+
+		Note that not only the user time is much faster
+		but that the system time improved a bit as well
+		In addition to this a major difference is that the amount of involuntary context switches decreased by a lot.
 
 change 4:
-	change: 
-		changed img[(i + l) * SIZE + j + k] to img[(i + k) * SIZE + j + l]
-		so we again optimize caching and reduce user time
-		basically the exact same thing as in change 3
+	We further swap elements for closer together addresses 
 
-	result:
+	old code:
+		img[(i + l) * SIZE + j + k]
+
+	new code:
+		img[(i + k) * SIZE + j + l]
+
+	so we again optimize caching and reduce user time
+	basically the exact same thing as in change 3
+
+	old result:
+		(averaged over 5 runs)
+		user time:                    6.41 s
+		system time:                  0.58 s
+		soft page faults:             524393
+		hard page faults:             0
+		max memory:                   2099752 KiB
+		voluntary context switches:   0
+		involuntary context switches: 299.8
+		dummy value (ignore):         549755813888
+
+
+	new result:
 		(average of 5 runs)
-        
         user time:                    6.23 s
         system time:                  0.57 s
         soft page faults:             524394
