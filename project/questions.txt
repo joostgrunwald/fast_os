@@ -55,6 +55,7 @@ change 1:
 				dummy += res[j * SIZE + i];
 			}
 		}
+		
 	because it is a redundant loop using cpu time.
 	If we change the code inside the main loop to:
 	
@@ -89,11 +90,40 @@ change 1:
 	We see an significant improvement.
 
 change 2:
-	changed: 
-		in every loop we removed int64_t and changed it to int to save memory space
-		we also changed every long to a short for the same reason.
+	In the loops we changed int64_t to int, which saves memory space.
+	In the inside loops we also changed long to short for the same reason.
+	This is possible because the long usages where in situations with very small ranges.
+
+	old code:
+		for (int64_t r = 0; r < REPEAT; r++)
+		{
+			for (int64_t i = 1; i < SIZE - 1; i++)
+			{
+				for (int64_t j = 1; j < SIZE - 1; j++)
+				{
+
+
+
+		for (long k = -1; k < 2; k++)
+		{
+			for (long l = -1; l < 2; l++)
+			{
+
+	new code:
+		for (int r = 0; r < REPEAT; r++)
+		{
+			for (int i = 1; i < SIZE - 1; i++)
+			{
+				for (int j = 1; j < SIZE - 1; j++)
+				{
+
+
+		for (short k = -1; k < 2; k++)
+		{
+			for (short l = -1; l < 2; l++)
+			{
 	
-	result:
+	new result:
 		(average of 5 runs)
 		user time:                    22.48 s 
 		system time:                  0.614 s
@@ -103,6 +133,18 @@ change 2:
 		voluntary context switches:   0
 		involuntary context switches: 531,2
 		dummy value (ignore):         549755813888
+
+	old result:
+		user time:                    22.72 s
+		system time:                  0.6 s
+		soft page faults:             524394
+		hard page faults:             0
+		max memory:                   2099756 KiB
+		voluntary context switches:   0
+		involuntary context switches: 429.6
+		dummy value (ignore):         549755813888
+
+	There is only a small improvement in performance, but there is improvement nonetheless.
 
 change 3:
 	changed:
