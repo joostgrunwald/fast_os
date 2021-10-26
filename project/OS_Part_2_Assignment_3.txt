@@ -1,5 +1,0 @@
-Kamp found that there was a fundamental misunderstanding of performance of certain algorithms. This is mainly caused due to not understanding/using virtual memory to its fullest potential. And using it as it were all real memory.
-Because of the realization of this fact Kamp decided to redesign the binary-heap to a what he calls B-heap. He later shows in some graphs that his B-heap indeed outperforms or performs similar to binary-heap. He shows that the B-heap performs better because it causes less frequent page faults which in turn increases performance.
-The difference is mostly in the way the B-heap finds the parent or childs of its nodes. The traditional way has a lot of pages stacked on top of each other in VM while B-heap tries to let most operations happen in one VM page and thus reduce the VM footprint and also the VM page faults.
-He then notes that in some scenarios a O(n^2) might perform better than a O(log2(n)) algorithm because the prior causes less page faults. 
-In conclusion, when analyzing algorithms and performance we should not ignore the way that program uses memory and what effect the memory has on the overall speed of the process.
