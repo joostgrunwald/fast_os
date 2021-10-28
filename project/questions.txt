@@ -42,6 +42,7 @@ He then notes that in some scenarios a O(n^2) might perform better than a O(log2
 In conclusion, when analyzing algorithms and performance we should not ignore the way that program uses memory and what effect the memory has on the overall speed of the process.
 
 step 3:
+The first generation of elements in a B-heap do not expand because it effectively lowers the amount of used pages. If we choose to expand that means that the two child nodes are not on the same page, which increases the amount of page faults and hence makes page lookup a much more inefficient process.
 
 step 4:
 NOTE: we took the average of 5 runs every time due to variations in time.
